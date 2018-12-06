@@ -144,5 +144,4 @@ client.on('message', msg => {
 });
 
 const devs = ['439393453332234243','321792845914570764'];
-
-client.login('NTIwMjI1MTI2OTM2MjE1NTcz.DuqyXw.q4nE8MosPJn1CcWOJQJqgOgscBs')
+client.login(process.env.BOT_TOKEN);
