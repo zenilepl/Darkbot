@@ -191,6 +191,16 @@ var day = message.guild.createdAt.getDate()
  
 });
 
+client.on("message", message => {
+var prefix = "!";
+        if(message.content.startsWith(prefix + "say")) {
+    if(message.author.id !== "321792845914570764") return message.reply("هذا الامر لصحاب البوت فقط");
+        let args = message.content.split(" ").slice(1);
+message.channel.send(args)
+        }
+});
+	
+
 client.on('message', message => {
   if (!message.content.startsWith(prefix)) return;
   var args = message.content.split(' ').slice(1);
