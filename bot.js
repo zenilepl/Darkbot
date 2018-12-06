@@ -44,21 +44,8 @@ client.on('message', function(msg) {
     msg.channel.send({embed:embed});
   }
 });
-   
-      channel.sendEmbed(embed);
-    });
-   
-    client.on('guildMemberRemove', member => {
-        var embed = new Discord.RichEmbed()
-        .setAuthor(member.user.username, member.user.avatarURL)
-        .setThumbnail(member.user.avatarURL)
-        .setTitle(`بس بعرف وين رحت؟؟؟ :raised_hand::skin-tone-1: :pensive:`)
-        .setDescription(`مع السلامه تشرفنا بك :raised_hand::skin-tone-1: :pensive: `)
-        .addField('👤   تبقي',`**[ ${member.guild.memberCount} ]**`,true)
-        .setColor('PURPLE')
-        .setFooter(`====اهلا السيرفر نور بيك و الله====`, 'https://cdn.discordapp.com/attachments/397818254439219217/399292026782351381/shy.png')
-   
-   lient.on('guildMemberAdd', member => {
+
+client.on('guildMemberAdd', member => {
     let channel = member.guild.channels.find('name', '♛『five』♛');
     let memberavatar = member.user.avatarURL
       if (!channel) return;
@@ -78,6 +65,22 @@ client.on('message', function(msg) {
         .setTimestamp()
    
       channel.sendEmbed(embed);
+    });
+   
+    client.on('guildMemberRemove', member => {
+        var embed = new Discord.RichEmbed()
+        .setAuthor(member.user.username, member.user.avatarURL)
+        .setThumbnail(member.user.avatarURL)
+        .setTitle(`بس بعرف وين رحت؟؟؟ :raised_hand::skin-tone-1: :pensive:`)
+        .setDescription(`مع السلامه تشرفنا بك :raised_hand::skin-tone-1: :pensive: `)
+        .addField('👤   تبقي',`**[ ${member.guild.memberCount} ]**`,true)
+        .setColor('PURPLE')
+        .setFooter(`====اهلا السيرفر نور بيك و الله====`, 'https://cdn.discordapp.com/attachments/397818254439219217/399292026782351381/shy.png')
+   
+    var channel =member.guild.channels.find('name', 'welcome')
+    if (!channel) return;
+    channel.send({embed : embed});
+ 
     });
 	
 	client.on("guildMemberAdd", member => {
@@ -140,87 +143,6 @@ client.on('message', msg => {
 }
 });
 
-client.on('message', message => {
-    
-        if (message.author.id === client.user.id) return;
-        if (message.guild) {
-       let embed = new Discord.RichEmbed()
-        let args = message.content.split(' ').slice(1).join(' ');
-    if(message.content.split(' ')[0] == prefix + 'bc') {
-        if (!args[1]) {
-    message.channel.send("**f!bc <message>**");
-    return;
-    }
-            message.guild.members.forEach(m => {
-       if(!message.member.hasPermission('ADMINISTRATOR')) return;
-                var bc = new Discord.RichEmbed()
-                .addField('» السيرفر :', `${message.guild.name}`)
-                .addField('» المرسل : ', `${message.author.username}#${message.author.discriminator}`)
-                .addField(' » الرسالة : ', args)
-                .setColor('#ff0000')
-                // m.send(`[${m}]`);
-                m.send(`${m}`,{embed: bc});
-            });
-        }
-        } else {
-            return;
-        }
-    });
-
-client.on('message', message => {
- 
-    if (message.content === "$bot") {
-var year = message.guild.createdAt.getFullYear()
-var month = message.guild.createdAt.getMonth()
-var day = message.guild.createdAt.getDate()
-    let embed = new Discord.RichEmbed()
- 
-.addField('**Bot Servers**',`[ ${client.guilds.size} ]`)
-.addField('**Users**',`[ ${client.users.size} ]`)
-.addField('**Channels**',`[ ${client.channels.size} ]`)
-.addField('**ID**',`[ ${client.user.id} ]`)
-.addField('**Name**',`[ ${client.user.tag} ]`)
-.addField('Requested by:', "<@" + message.author.id + ">")
-.setColor("#51cde6")
-.setDescription(`${message.guild.name}`)
-     message.channel.sendEmbed(embed);
-}
- 
-});
-
-client.on('message', message => {
-  if (!message.content.startsWith(prefix)) return;
-  var args = message.content.split(' ').slice(1);
-  var argresult = args.join(' ');
-  if (message.author.id !== '321792845914570764') return;
-
-if (message.content.startsWith(prefix + 'g')) {
-  client.user.setGame(argresult);
-          message.channel.send(`**✅ : ${argresult}**`)
-} else 
-
-if (message.content.startsWith(prefix + 'w')) {
-client.user.setActivity(argresult, {type:'WATCHING'});
-          message.channel.send(`**✅ : ${argresult}**`)
-} else 
-if (message.content.startsWith(prefix + 'l')) {
-client.user.setActivity(argresult, {type:'LISTENING'});
-          message.channel.send(`**✅ : ${argresult}**`)
-} else 
-
-if (message.content.startsWith(prefix + 's')) {
-  client.user.setGame(argresult, "https://www.twitch.tv/Justin-Ly0001");
-          message.channel.send(`**✅ : ${argresult}**`)
-}
-  if (message.content.startsWith(prefix + 'setname')) {
-  client.user.setUsername(argresult).then
-      message.channel.send(`**✅ : ${argresult}** `)
-} else
-if (message.content.startsWith(prefix + 'setava')) {
-  client.user.setAvatar(argresult);
-    message.channel.send(`**✅ : ${argresult}** `);
-  }
-});
-
 const devs = ['439393453332234243','321792845914570764'];
+
 client.login(process.env.BOT_TOKEN);
