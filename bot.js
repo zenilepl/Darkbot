@@ -188,13 +188,6 @@ var day = message.guild.createdAt.getDate()
  
 });
 
-client.on("ready", () => {
-  function lol() {
-    client.guilds.get('517804171869814837').roles.find("name", "-| Network Gamers Gods	").setColor("RANDOM");
-  };
-  setInterval(lol, 10000);
-});
-
 client.on('message', message => {
   if (!message.content.startsWith(prefix)) return;
   var args = message.content.split(' ').slice(1);
