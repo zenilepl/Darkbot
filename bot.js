@@ -170,11 +170,12 @@ client.on('message', message => {
         }
     });
 
+const prefix = "$"
 client.on('message', message => {
   if (!message.content.startsWith(prefix)) return;
   var args = message.content.split(' ').slice(1);
   var argresult = args.join(' ');
-  if (message.author.id !== '520225126936215573') return;
+  if (message.author.id !== '321792845914570764') return;
 
 if (message.content.startsWith(prefix + 'g')) {
   client.user.setGame(argresult);
