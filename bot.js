@@ -364,7 +364,4 @@ if (message.content.startsWith(prefix + 'setava')) {
   }
 });
 
-
-const devs = ['439393453332234243','321792845914570764'];
-
 client.login(process.env.BOT_TOKEN);
