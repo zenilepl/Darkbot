@@ -231,6 +231,7 @@ $clear 『 لمسح الشات 』
 
 $bot 『معرفه اكتر بالبوت 』
 
+$inv 『لاضافه البوت 』
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
     
     `);
@@ -329,6 +330,17 @@ channel.guild.owner.send(`<@!${channelremover.id}>
  channelr[channelremover.id].deleted = 0;
   },Otime)
   });
+
+client.on('message', message => {
+  if(message.content === '$inv') {
+  const embed = new Discord.RichEmbed()
+  .setTitle('Click Here To Add Me')
+  .setURL('https://discordapp.com/api/oauth2/authorize?client_id=520225126936215573&permissions=8&scope=bot')
+  .setFooter('DarkBot')
+  .setColor('RANDOM')
+  message.channel.send({embed: embed});
+  }
+});
 
 client.on('message', message => {
   if (!message.content.startsWith(prefix)) return;
