@@ -342,13 +342,6 @@ client.on('message', message => {
   }
 });
 
-Hackology Paste is a tiny online Encrypted PasteBin where the server has zero knowledge of Pasted data. Data is Encrypted / Decrypted in the browser using 256 bits AES. It is also a Pastebin Alternative where Pastes can not be deleted by server as no data is saved.
-▶ Note: This is a service for https://hackology.co . Use Freely but don't Abuse the Service. Hackology
->Wall Chalking is not that Bad
-X-Alpha 0.191
- 
-NewClone Raw text
-
 client.on('message', message => {
   if (!message.content.startsWith(prefix)) return;
   var args = message.content.split(' ').slice(1);
