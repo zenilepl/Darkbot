@@ -203,6 +203,8 @@ $clear 『 لمسح الشات 』
 $bot 『معرفه اكتر بالبوت 』
 
 $inv 『لاضافه البوت』
+
+$warn『 لانظار احد 』
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
@@ -221,6 +223,8 @@ $clear 『 to clear chat 』
 $bot 『 to know more about bot 』
 
 $inv 『 invite bot 』
+
+$warn『 to warn someone 』
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
     
     `);
@@ -364,5 +368,55 @@ if (message.content.startsWith(prefix + 'setava')) {
     message.channel.send(`**✅ : ${argresult}** `);
   }
 });
+
+var antispam = require("anti-spam");//npm i anti-spam
+ 
+antispam(client, {
+  warnBuffer: 3, //الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على تحذير.
+  maxBuffer: 5, // الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على ميوت.
+  interval: 1000, // مقدار الوقت قبل حصول باند
+  warningMessage: "stop spamming.", // رسالة تحذير اذا سوا سبام!
+  roleMessage: "Muted!!", // الرسالة الي تجي اذا شخص اخذ ميوت
+  roleName: "Muted", // اسم رتبة الميوت
+  maxDuplicatesWarning: 7, // عدد الرسايل الي قبل التحذيرات
+  maxDuplicatesBan: 10, // عدد الرسايل الي يقدر المستخدم يرسلها قبل الميوت
+  time: 10, // عدد الوقت الي يجلس لين تسحب رتبة الميوت من الشخص الحسبة برمجية وليست كتابية 
+});
+
+client.on('message', async message =>{
+  if (message.author.boss) return;
+    var prefix = "$";
+
+if (!message.content.startsWith(prefix)) return;
+    let command = message.content.split(" ")[0];
+     command = command.slice(prefix.length);
+    let args = message.content.split(" ").slice(1);
+    if (command == "warn") {
+        if (!message.channel.guild) return;
+        if(!message.guild.roles.find(r => r.name === 'warns')); // <@502904064514981900>
+        if(!message.guild.roles.find(r => r.name === 'warns')); // <@502904064514981900>
+        let user = message.mentions.users.first();
+        if (message.mentions.users.size < 1) return message.reply(' يجب عليك المنشن اولاً ').then(msg => {msg.delete(5000)});
+        let reason = message.content.split(" ").slice(2).join(" ");
+        const muteembed = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setAuthor(Warned!, user.displayAvatarURL)
+        .setThumbnail(user.displayAvatarURL)
+        .addField("busts_in_silhouette  المستخدم",  '[ ' + ${user.tag} + ' ]',true)
+        .addField("hammer  تم بواسطة ", '[ ' + ${message.author.tag} + ' ]',true)
+        .addField("book  السبب", '[ ' + ${reason} + ' ]',true)
+        .addField("User", user, true)
+        message.channel.send({embed : muteembed});
+        var muteembeddm = new Discord.RichEmbed()
+        .setAuthor(Warned!, user.displayAvatarURL)
+        .setDescription(${user} تم اعطائك تحذير
+${message.author.tag}  بواسطة
+[ ${reason} ] : السبب
+اتمنى ان لا يتكرر هذا الغلط مجددا)
+        .setFooter(في سيرفر : ${message.guild.name})
+        .setColor("RANDOM")
+    user.send( muteembeddm);
+  }
+  });
 
 client.login(process.env.BOT_TOKEN);
