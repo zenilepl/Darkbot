@@ -381,39 +381,4 @@ antispam(client, {
   time: 10, // عدد الوقت الي يجلس لين تسحب رتبة الميوت من الشخص الحسبة برمجية وليست كتابية 
 });
 
-client.on('message', async message =>{
-  if (message.author.boss) return;
-
-if (!message.content.startsWith(prefix)) return;
-    let command = message.content.split(" ")[0];
-     command = command.slice(prefix.length);
-    let args = message.content.split(" ").slice(1);
-    if (command == "warn") {
-        if (!message.channel.guild) return;
-        if(!message.guild.roles.find(r => r.name === 'warns')); // <@502904064514981900>
-        if(!message.guild.roles.find(r => r.name === 'warns')); // <@502904064514981900>
-        let user = message.mentions.users.first();
-        if (message.mentions.users.size < 1) return message.reply(' يجب عليك المنشن اولاً ').then(msg => {msg.delete(5000)});
-        let reason = message.content.split(" ").slice(2).join(" ");
-        const muteembed = new Discord.RichEmbed()
-        .setColor("RANDOM")
-        .setAuthor(Warned!, user.displayAvatarURL)
-        .setThumbnail(user.displayAvatarURL)
-        .addField("busts_in_silhouette  المستخدم",  '[ ' + ${user.tag} + ' ]',true)
-        .addField("hammer  تم بواسطة ", '[ ' + ${message.author.tag} + ' ]',true)
-        .addField("book  السبب", '[ ' + ${reason} + ' ]',true)
-        .addField("User", user, true)
-        message.channel.send({embed : muteembed});
-        var muteembeddm = new Discord.RichEmbed()
-        .setAuthor(Warned!, user.displayAvatarURL)
-        .setDescription(${user} تم اعطائك تحذير
-${message.author.tag}  بواسطة
-[ ${reason} ] : السبب
-اتمنى ان لا يتكرر هذا الغلط مجددا)
-        .setFooter(في سيرفر : ${message.guild.name})
-        .setColor("RANDOM")
-    user.send( muteembeddm);
-  }
-  });
-
 client.login(process.env.BOT_TOKEN);
