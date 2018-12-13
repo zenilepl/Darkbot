@@ -204,7 +204,6 @@ $bot 『معرفه اكتر بالبوت 』
 
 $inv 『لاضافه البوت』
 
-$warn『 لانظار احد 』
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
 
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
@@ -224,7 +223,6 @@ $bot 『 to know more about bot 』
 
 $inv 『 invite bot 』
 
-$warn『 to warn someone 』
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
     
     `);
@@ -385,7 +383,6 @@ antispam(client, {
 
 client.on('message', async message =>{
   if (message.author.boss) return;
-    var prefix = "$";
 
 if (!message.content.startsWith(prefix)) return;
     let command = message.content.split(" ")[0];
