@@ -204,6 +204,24 @@ $bot 『معرفه اكتر بالبوت 』
 
 $inv 『لاضافه البوت』
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
+
+● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
+Bot Prefix = "$"
+                        
+$server 『 to know more about server 』                      
+
+$cl『 close chat 』
+
+$op『open chat 』
+
+$clear 『 to clear chat 』
+
+&say 『 to repeat the world you said 』
+
+$bot 『 to know more about bot 』
+
+$inv 『 invite bot 』
+● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
     
     `);
   }
