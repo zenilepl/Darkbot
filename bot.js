@@ -213,8 +213,8 @@ client.on('message', msg => {
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 Bot Prefix = "$"
                         
-$server 『معلومات عن السيرفر』                      
-
+$server 『معلومات عن السيرفر』   
+                   
 $cl『 قفل الشات 』
 
 $op『فتح الشات 』
@@ -227,13 +227,15 @@ $bot 『معرفه اكتر بالبوت 』
 
 $inv 『لاضافه البوت』
 
-● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
+$user 『 لمعرفه اليوزر حقك 』
 
+$dt 『 لمعرفه الساعه 』
+● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
 Bot Prefix = "$"
                         
-$server 『 to know more about server 』                      
-
+$server 『 to know more about server 』
+                      
 $cl『 close chat 』
 
 $op『open chat 』
@@ -246,8 +248,10 @@ $bot 『 to know more about bot 』
 
 $inv 『 invite bot 』
 
+$user 『 to know more about your user 』
+
+$dt 『 to know time 』
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
-    
     `);
   }
 });
@@ -580,5 +584,123 @@ client.on('message', message => {
     message.reply('**:sunglasses:بنأخذ حقك:sunglasses:**').then(msg => msg.delete(3000));
     }
 });
+
+client.on('guildCreate', guild => {
+  var embed = new Discord.RichEmbed()
+  .setColor(0x5500ff)
+  .setDescription(`**شكراً لك لإضافه البوت الى سيرفرك**`)
+      guild.owner.send(embed)
+});
+
+client.on('message', message => {
+         
+ 
+  if (message.content.startsWith(prefix + "user")) {
+   
+   if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
+ 
+       message.guild.fetchInvites().then(invs => {
+let member = client.guilds.get(message.guild.id).members.get(message.author.id);
+let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
+let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+var moment = require('moment');
+var args = message.content.split(" ").slice(1);
+let user = message.mentions.users.first();
+var men = message.mentions.users.first();
+var heg;
+if(men) {
+heg = men
+} else {
+heg = message.author
+}
+var mentionned = message.mentions.members.first();
+var h;
+if(mentionned) {
+h = mentionned
+} else {
+h = message.member
+}
+moment.locale('ar-TN');
+var id = new  Discord.RichEmbed()
+ 
+.setColor("#0a0909")
+.setThumbnail(message.author.avatarURL)
+.addField(': تاريخ دخولك للديسكورد',` \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n ${moment(heg.createdTimestamp).fromNow()}**` ,true)
+.addField(': تاريخ دخولك لسيرفرنا', `\`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
+.addField(` :لقد قمت بدعوة `, ` ${inviteCount} `)
+ 
+ 
+.setFooter(message.author.username, message.author.avatarURL)  
+message.channel.sendEmbed(id);
+})
+}
+ 
+ 
+ 
+});
+
+var prefix = "$";
+client.on('message', message => {
+         if (message.content === prefix + "dt") {
+         if (!message.channel.guild) return message.reply('** This command only for servers **');  
+         var currentTime = new Date(),
+            hours = currentTime.getHours() + 4 ,
+            hours2 = currentTime.getHours() + 3 ,
+            hours3 = currentTime.getHours() + 2 ,
+            hours4 = currentTime.getHours() + 3 ,
+            minutes = currentTime.getMinutes(),
+            seconds = currentTime.getSeconds(),
+            Year = currentTime.getFullYear(),
+            Month = currentTime.getMonth() + 1,
+            Day = currentTime.getDate();
+             var h = hours
+  if(hours > 12) {
+               hours -= 12;
+            } else if(hours == 0) {
+                hours = "12";
+            }  
+             if(hours2 > 12) {
+               hours2 -= 12;
+            } else if(hours2 == 0) {
+                hours2 = "12";
+            
+            }  
+                         if(hours3 > 12) {
+               hours3 -= 12;
+            } else if(hours3 == 0) {
+                hours3 = "12";
+            } 
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+
+            var suffix = 'صباحاَ';
+            if (hours >= 12) {
+                suffix = 'مساء';
+                hours = hours - 12;
+            }
+            if (hours == 0) {
+                hours = 12;
+            }
+ 
+
+                var Date15= new Discord.RichEmbed()
+                .setThumbnail("https://i.imgur.com/ib3n4Hq.png") 
+                .setTitle( "『التاريخ  والوقت』")
+                .setColor('RANDOM')
+                .setFooter(message.author.username, message.author.avatarURL)
+                .addField('الامارات',
+                "『"+ hours + ":" + minutes +":"+ seconds + "』")
+                 .addField('مكه المكرمه',
+                "『"+ hours2 + ":" + minutes +":"+ seconds  + "』") 
+                .addField('مصر',
+                "『"+ hours3 + ":" + minutes +":"+ seconds  + "』") 
+                
+                .addField('التاريخ',
+                "『"+ Day + "-" + Month + "-" + Year +  "』")
+
+                 message.channel.sendEmbed(Date15);
+        }
+    });
 
 client.login(process.env.BOT_TOKEN);
