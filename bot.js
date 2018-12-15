@@ -207,25 +207,14 @@ client.on('message', message => {
 }
 });
 
-client.on('message', msg => {
-  if (msg.content === '$help') {
-    msg.author.send(`
-client.on('message', msg => {
-  if (msg.content === '$help') {
-    msg.author.send(`
-{-=-=-=-=-=-=-=-=-}
-NoHaxJustZenileToday at 10:14 PM
-client.on('message', msg => {
-  if (msg.content === '$help') {
-    msg.author.send(`{-=-=-=-=-=-=-=-=-=-}
-why you should use the bot
-because it is free and protect the server);
-  }
-});
 
 client.on('message', msg => {
   if (msg.content === '$help') {
-    msg.author.send(`{-=-=-=-=-=-=-=-=-=-}
+    msg.author.send(`
+{-=-=-=-=-=-=-=-=-=-}
+why you should use the bot??
+because it is free and protect the server);
+{-=-=-=-=-=-=-=-=-=-}
 Bot prefix {$}
 
 $تقديم {to apply for a rank and you should have room  تقديم و القبول-الرفض}
@@ -249,12 +238,7 @@ $bot {to know more about bot}
 $user {to know more about your accounnt}
 
 {-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-});
-  }
-});
 
-client.on('message', msg => {
-  if (msg.content === '$help') {
-    msg.author.send(`{-=-=-=-=-=-=-=-=-}
 this bot is for arabic people
 and it is free
 {-=-=-=-=-=-=-=-=-});
