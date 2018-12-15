@@ -75,9 +75,9 @@ client.on('guildMemberAdd', member => {
     let embed = new Discord.RichEmbed()
         .setColor('PURPLE')
         .setThumbnail(memberavatar)
-        .addField('🎽 | name :  ',`${member}`)
-        .addField('📢 | اطلق من دخل' , `Welcome to the server, ${member}`)
-        .addField('🆔 | user :', "**[" + `${member.id}` + "]**" )
+        .addField(' | name :  ',`${member}`)
+        .addField(' | اطلق من دخل' , `Welcome to the server, ${member}`)
+        .addField(' | user :', "**[" + `${member.id}` + "]**" )
                 .addField('➡| انت العضو رقم',`${member.guild.memberCount}`)
                
                   .addField("Name:",`<@` + `${member.id}` + `>`, true)
@@ -96,7 +96,7 @@ client.on('guildMemberAdd', member => {
         .setThumbnail(member.user.avatarURL)
         .setTitle(`بس بعرف وين رحت؟؟؟ :raised_hand::skin-tone-1: :pensive:`)
         .setDescription(`مع السلامه تشرفنا بك :raised_hand::skin-tone-1: :pensive: `)
-        .addField('👤   تبقي',`**[ ${member.guild.memberCount} ]**`,true)
+        .addField('   تبقي',`**[ ${member.guild.memberCount} ]**`,true)
         .setColor('PURPLE')
         .setFooter(`====اهلا السيرفر نور بيك و الله====`, 'https://cdn.discordapp.com/attachments/397818254439219217/399292026782351381/shy.png')
    
@@ -199,10 +199,10 @@ message.channel.send(args)
 
 client.on('message', message => {
     if(message.content.includes('discord.gg')){
-                                            if(!message.channel.guild) return message.reply('** advertising me on DM ? 🤔   **');
+                                            if(!message.channel.guild) return message.reply('** advertising me on DM ?    **');
         if (!message.member.hasPermissions(['ADMINISTRATOR'])){
         message.delete()
-    return message.reply(`** No Invite Links 😠 !**`)
+    return message.reply(`** No Invite Links  !**`)
     }
 }
 });
@@ -234,40 +234,6 @@ and it is free
   }
 });
 
-client.on('message', message => {
-  if (!message.content.startsWith(prefix)) return;
-  var args = message.content.split(' ').slice(1);
-  var argresult = args.join(' ');
-  if (message.author.id !== '321792845914570764') return;
-
-if (message.content.startsWith(prefix + 'g')) {
-  client.user.setGame(argresult);
-          message.channel.send(`**✅ : ${argresult}**`)
-} else 
-
-if (message.content.startsWith(prefix + 'w')) {
-client.user.setActivity(argresult, {type:'WATCHING'});
-          message.channel.send(`**✅ : ${argresult}**`)
-} else 
-if (message.content.startsWith(prefix + 'l')) {
-client.user.setActivity(argresult, {type:'LISTENING'});
-          message.channel.send(`**✅ : ${argresult}**`)
-} else 
-
-if (message.content.startsWith(prefix + 's')) {
-  client.user.setGame(argresult, "https://www.twitch.tv/Justin-Ly0001");
-          message.channel.send(`**✅ : ${argresult}**`)
-}
-  if (message.content.startsWith(prefix + 'setname')) {
-  client.user.setUsername(argresult).then
-      message.channel.send(`**✅ : ${argresult}** `)
-} else
-if (message.content.startsWith(prefix + 'setava')) {
-  client.user.setAvatar(argresult);
-    message.channel.send(`**✅ : ${argresult}** `);
-  }
-});
-
 var antispam = require("anti-spam");//npm i anti-spam
  
 antispam(client, {
@@ -290,13 +256,13 @@ client.on("message", message => {
             if(!channel) return message.reply("**لانشاء روم التقديمات !!setsubmissions من فضلك اكتب الامر**")
             if(channel) {
             message.channel.send( message.member + ', **:timer:**').then( (m) =>{
-              m.edit( message.member + ', **اسمك الحقيقى بالكامل ✍**' )
+              m.edit( message.member + ', **اسمك الحقيقى بالكامل **' )
               m.channel.awaitMessages( m1 => m1.author == message.author,{ maxMatches: 1, time: 60*1000 } ).then ( (m1) => {
                   m1 = m1.first();
                   var name = m1.content;
                   m1.delete();
                   m.edit(message.member + ', **:timer:**').then( (m) =>{
-                      m.edit( message.member + ', **عندك كام سنة 🎓**' )
+                      m.edit( message.member + ', **عندك كام سنة **' )
                       setTimeout(() => {
                         m.delete()
                       }, 10000);
@@ -323,7 +289,7 @@ client.on("message", message => {
                                       var ask2 = m4.content;
                                       m4.delete();
                                       message.channel.send( message.member + ', **:timer:**').then( (m) =>{
-                                        m.edit( message.member + ', **لماذا يجب علينا ان نقبلك ؟ اعطنا سبباً وجيهاً 🤔**' )
+                                        m.edit( message.member + ', **لماذا يجب علينا ان نقبلك ؟ اعطنا سبباً وجيهاً **' )
                                         m.channel.awaitMessages( m1 => m1.author == message.author,{ maxMatches: 1, time: 60*1000 } ).then ( (m5) => {
                                             m5 = m5.first();
                                             var ask3 = m5.content;
@@ -370,7 +336,7 @@ client.on("message", message => {
  
                           })
                 })
-    message.channel.send("**✅ تم انشاء روم التقديمات بنجاح**")
+    message.channel.send("** تم انشاء روم التقديمات بنجاح**")
             }
             })
     client.on('message',async message => {
@@ -379,7 +345,7 @@ client.on("message", message => {
   let mySupport = message.guild.roles.find('name',role);
   if(message.content.startsWith("*قبول")) {
     let acRoom = message.guild.channels.find('name', 'القبول-الرفض');
-    if(!acRoom) return message.reply("!!setac من فضلك انشاء روم **القبول-ال��فض** او اكتب الامر");
+    if(!acRoom) return message.reply("!!setac من فضلك انشاء روم **القبول-الرفض** او اكتب الامر");
     if(acRoom) {
     if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return;
     if(!mention) return message.reply('منشن شخص');
@@ -416,7 +382,7 @@ client.on('message',async message => {
  
                           })
                 })
-    message.channel.send("**✅ تم انشاء روم القبول والرفض بنجاح**")
+    message.channel.send("** تم انشاء روم القبول والرفض بنجاح**")
             }
 })
 
@@ -471,7 +437,7 @@ client.on('message', message => {
  
   if (message.content.startsWith(prefix + "user")) {
    
-   if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
+   if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات `);
  
        message.guild.fetchInvites().then(invs => {
 let member = client.guilds.get(message.guild.id).members.get(message.author.id);
