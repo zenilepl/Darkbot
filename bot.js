@@ -207,38 +207,27 @@ client.on('message', message => {
 }
 });
 
-
 client.on('message', msg => {
   if (msg.content === '$help') {
     msg.author.send(`
-{-=-=-=-=-=-=-=-=-=-}
-why you should use the bot??
+● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
+why you should use the bot
 because it is free and protect the server);
 {-=-=-=-=-=-=-=-=-=-}
 Bot prefix {$}
 
 $تقديم {to apply for a rank and you should have room  تقديم و القبول-الرفض}
-
 $dt {to know the date and the time }
-
 $report {to report someone}
-
 $inv {to invite the bot}
-
 $server {to know more about server}
-
 $cl {to close chat}
-
 $op {to open chat}
-
 $clear + number {to clear the chat}
-
 $bot {to know more about bot}
-
 $user {to know more about your accounnt}
-
 {-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-});
-
+{-=-=-=-=-=-=-=-=-}
 this bot is for arabic people
 and it is free
 {-=-=-=-=-=-=-=-=-});
