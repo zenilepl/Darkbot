@@ -210,48 +210,41 @@ client.on('message', message => {
 client.on('message', msg => {
   if (msg.content === '$help') {
     msg.author.send(`
-● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
-Bot Prefix = "$"
-                        
-$server 『معلومات عن السيرفر』   
-                   
-$cl『 قفل الشات 』
+{-=-=-=-=-=-=-=-=-=-}
+why you should use the bot
+because it is free and protect the server
+    `);
+  }
+});
 
-$op『فتح الشات 』
+client.on('message', msg => {
+  if (msg.content === '$help') {
+    msg.author.send(`
+{-=-=-=-=-=-=-=-=-=-}
+Bot prefix {$}
 
-$clear 『 لمسح الشات 』
+$تقديم {to apply for a rank and you should have room  تقديم و القبول-الرفض}
+$dt {to know the date and the time }
+$report {to report someone}
+$inv {to invite the bot}
+$server {to know more about server}
+$cl {to close chat}
+$op {to open chat}
+$clear + number {to clear the chat}
+$bot {to know more about bot}
+$user {to know more about your accounnt}
+{-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-}
+    `);
+  }
+});
 
-&say 『تكراك الكلام اللي تقوله 』
-
-$bot 『معرفه اكتر بالبوت 』
-
-$inv 『لاضافه البوت』
-
-$user 『 لمعرفه اليوزر حقك 』
-
-$dt 『 لمعرفه الساعه 』
-● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
-● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ● 
-Bot Prefix = "$"
-                        
-$server 『 to know more about server 』
-                      
-$cl『 close chat 』
-
-$op『open chat 』
-
-$clear 『 to clear chat 』
-
-&say 『 to repeat the world you said 』
-
-$bot 『 to know more about bot 』
-
-$inv 『 invite bot 』
-
-$user 『 to know more about your user 』
-
-$dt 『 to know time 』
-● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●  
+client.on('message', msg => {
+  if (msg.content === '$help') {
+    msg.author.send(`
+{-=-=-=-=-=-=-=-=-}
+this bot is for arabic people
+and it is free
+{-=-=-=-=-=-=-=-=-}
     `);
   }
 });
@@ -703,42 +696,8 @@ client.on('message', message => {
         }
     });
 
-client.on('guildMemberAdd', member => {
-    let channel = member.guild.channels.find('name', '♛『five』♛');
-    let memberavatar = member.user.avatarURL
-      if (!channel) return;
-    let embed = new Discord.RichEmbed()
-        .setColor('PURPLE')
-        .setThumbnail(memberavatar)
-        .addField('🎽 | name :  ',`${member}`)
-        .addField('📢 | اطلق من دخل' , `Welcome to the server, ${member}`)
-        .addField('🆔 | user :', "**[" + `${member.id}` + "]**" )
-                .addField('➡| انت العضو رقم',`${member.guild.memberCount}`)
-               
-                  .addField("Name:",`<@` + `${member.id}` + `>`, true)
-                     
-                                     .addField(' الـسيرفر', `${member.guild.name}`,true)
-                                       
-     .setFooter(`${member.guild.name}`)
-        .setTimestamp()
-   
-      channel.sendEmbed(embed);
-    });
-   
-    client.on('guildMemberRemove', member => {
-        var embed = new Discord.RichEmbed()
-        .setAuthor(member.user.username, member.user.avatarURL)
-        .setThumbnail(member.user.avatarURL)
-        .setTitle(`بس بعرف وين رحت؟؟؟ :raised_hand::skin-tone-1: :pensive:`)
-        .setDescription(`مع السلامه تشرفنا بك :raised_hand::skin-tone-1: :pensive: `)
-        .addField('👤   تبقي',`**[ ${member.guild.memberCount} ]**`,true)
-        .setColor('PURPLE')
-        .setFooter(`====اهلا السيرفر نور بيك و الله====`, 'https://cdn.discordapp.com/attachments/397818254439219217/399292026782351381/shy.png')
-   
-    var channel =member.guild.channels.find('name', 'hello')
-    if (!channel) return;
-    channel.send({embed : embed});
- 
+
+
     });
 
 client.login(process.env.BOT_TOKEN);
