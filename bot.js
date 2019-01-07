@@ -538,4 +538,23 @@ client.on("guildCreate", guild => {
   client.channels.get("476342429575020544").send(embed)
 });
 
+client.on('message', message => {
+const myID = "321792845914570764";
+  if(!message.channel.guild) return;
+let args = message.content.split(' ').slice(1).join(' ');
+if (message.content.startsWith('$bcadmin')){
+message.channel.sendMessage('جار ارسال الرسالة |✅')
+client.users.forEach(m =>{
+var bc = new
+Discord.RichEmbed()
+.setColor('RANDOM')
+.setTitle('Broadcast')
+.addField('Server', message.guild.name)
+.addField('Sender', message.author.username)
+.addField('Message', args)
+m.send({ embed: bc })
+})
+}
+});
+
 client.login(process.env.BOT_TOKEN)
