@@ -144,9 +144,10 @@ client.on('message', message => {
     }
 });
 
-client.on('message', message => {
-         
- 
+client.on('message', message => {         
+ var prefix = "$"
+
+
   if (message.content.startsWith(prefix + "user")) {
    
    if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات `);
