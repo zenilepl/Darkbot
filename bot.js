@@ -557,4 +557,22 @@ m.send({ embed: bc })
 }
 });
 
+client.on('ready',async () => {
+ 
+joinVoiceChannel( client.channels.get("ا531121940962738176"), client.guilds.get("531114837787279360") );
+ 
+function joinVoiceChannel(channel, guild) {
+if(channel.type !== 'voice') return console.log(" # Error. - \"The channel type isn't a voice one\"");
+channel.join().then(() => {
+setInterval(() => {
+if(client.user.voiceChannel.id !== guild.channels.get(channel)) {
+channel.join();
+}
+}, 100);
+}).catch(e => {
+if(e) console.log(e);
+});
+}
+});
+
 client.login(process.env.BOT_TOKEN)
