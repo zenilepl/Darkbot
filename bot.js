@@ -1,33 +1,95 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
-
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`$help`,"http://twitch.tv/S-F")
-  console.log('')
-  console.log('made by NoHaxJustZenile')
-  console.log('╔[═════════════════════════════════════════════════════════════════]╗')
-  console.log(`[Start] ${new Date()}`);
-  console.log('╚[═════════════════════════════════════════════════════════════════]╝')
-  console.log('')
-  console.log('╔[════════════════════════════════════]╗');
-  console.log(`Logged in as * [ " ${client.user.username} " ]`);
-  console.log('')
-  console.log('Informations :')
-  console.log('')
-  console.log(`servers! [ " ${client.guilds.size} " ]`);
-  console.log(`Users! [ " ${client.users.size} " ]`);
-  console.log(`channels! [ " ${client.channels.size} " ]`);
-  console.log('╚[════════════════════════════════════]╝')
-  console.log('')
-  console.log('╔[════════════]╗')
-  console.log(' Bot Is Online')
-  console.log('╚[════════════]╝')
-  console.log('')
-  console.log('')
+    شرح
+// الايفنت
+client.on("message",async message => {
+// يتأكد ان الرسالة مش في الخاص و كمان ان صاحب الرسالة مش بوت
+if(message.author.bot || message.channel.type === 'dm') return;
+// يقسم الرسالة لأرراي ( اي حاجة تيجي بعد او قبل المسافة يحطها في الارراي ) ء
+let args = message.content.split(" ");
+// او ان اول جزء في الرسالة يتكون فقط من البرفكس و البي سي
+if(args[0] === prefix + "bc") {
+// يتحقق من برمشن الشخص , لو معاه البرمشن هيكمل الكود عادي لكن لو ممعهوش هيقله انه ممعهوش البرمشن , وطبعا لازم تعامله على انه عضو في السيرفر مش مستخدم دسكورد
+// لو محططش return
+// هيقله انه ممعهوش برمشن بس هيكمل الكود عادي ويبعت
+if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("NO PERMS");
+// يتأكد ان بعد الأمر في كلمة لو مفيش كلمة هيقله انت محططش الرسالة
+if(!args[1]) return message.channel.send("NO MESSAGE");
+// هنا نستخدم forEach
+// من اسمها هي بتعمل الحاجة اللي انت عايزها لكل الحاجة المعينة اللي انت عايزها
+// هنا هنستخدمها على انها لكل اعضاء السيرفر , + هي فنكشن
+message.guild.members.forEach(m => {
+// يبعتله الرسالة ولو فشل ومقدرش يبعتله الرسالة مش هيبعتلك ايرور في الشات
+// لو محططش .catch
+// هيملالك الكونسول ايرورات
+m.send(args.slice(1).join(" ")).catch(e => {
+// لو لقا ايرور او مقدرش يبعت للشخص مش هيعمل حاجة
+if(e) return;
+});
+});
+}
 });
 
+
+
+ban
+var prefix = "البريفكس الي انت عايزه"
+client.on('message', message => {
+  if (message.author.xErenaa) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "ban") {
+               if(!message.channel.guild) return message.reply('** This command only for servers**');
+         
+  if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**You Don't Have ` BAN_MEMBERS ` Permission**");
+  if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
+  let user = message.mentions.users.first();
+  let reason = message.content.split(" ").slice(2).join(" ");
+  /*let bErenaalog = client.channels.find("name", "Erenaa-log");
+
+  if(!bErenaalog) return message.reply("I've detected that this server doesn't have a Erenaa-log text channel.");*/
+  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
+  if(!reason) return message.reply ("**اكتب سبب الطرد**");
+  if (!message.guild.member(user)
+  .bannable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
+
+  message.guild.member(user).ban(7, user);
+
+  const banembed = new Discord.RichEmbed()
+  .setAuthor(`BANNED!`, user.displayAvatarURL)
+  .setColor("RANDOM")
+  .setTimestamp()
+  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+  message.channel.send({
+    embed : banembed
+  })
+}
+});
+
+kick
+var prefix = "البريفكس الي انت عايزه"
+client.on("message", (message) => {
+    if (message.content.startsWith("${prefix}kick")) {
+      if(!message.member.hasPermission('KICK_MEMBERS')) return message.reply('? ماعندك الصلاحيات');
+        var member= message.mentions.members.first();
+        member.kick().then((member) => {
+            message.channel.send(member.displayName + " مع السلامه :wave: ");
+        }).catch(() => {
+            message.channel.send("Error -_-");
+        });
+    }
+});
+
+SYSTEM
+
+const Discord = require('discord.js');
 const fs = require('fs');
+const client = new Discord.Client();
  
 client.on('ready', () => {
   console.log(`Welcome Bro ${client.user.tag}!`);
@@ -113,7 +175,7 @@ client.on("message", message => {
          $bc2 : برودكاست لجميع اعضاء السيرفر بدون ايمبد
          $bc3 : برودكاست للاعضاء  الاونلاين فقط
          ------------------------------
-         $user : عرض ملفك الشخصي
+         $id : عرض ملفك الشخصي
          $ask : البوت يسئلك اسئلة
          $server : احصائيات السيرفر
          ------------------------------
@@ -124,7 +186,7 @@ client.on("message", message => {
          $voicesetup : انشاء روم فويس اونلاين
          لكتابة الكلام الذي في الروم اكتب _voicesetup الكلام و 0
          ------------------------------
-         $botعدد سيرفر البوت
+         $bot : عدد سيرفر البوت
          $inv : دعوه البوت الى سيرفر
          $help : عرض هذه الرسالة
          ------------------------------
@@ -143,55 +205,58 @@ client.on('message', message => {
   message.channel.sendEmbed(embed);
     }
 });
-
-client.on('message', message => {         
- var prefix = "$"
-
-
-  if (message.content.startsWith(prefix + "user")) {
-   
-   if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات `);
+client.on('message', message => {
+    var prefix = "$"
+var args = message.content.split(" ").slice(1);    
+if(message.content.startsWith(prefix + 'id')) {
+var year = message.author.createdAt.getFullYear()
+var month = message.author.createdAt.getMonth()
+var day = message.author.createdAt.getDate()
+var men = message.mentions.users.first();  
+let args = message.content.split(' ').slice(1).join(' ');
+if (args == '') {
+var z = message.author;
+}else {
+var z = message.mentions.users.first();
+}
  
-       message.guild.fetchInvites().then(invs => {
-let member = client.guilds.get(message.guild.id).members.get(message.author.id);
-let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
-let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-var moment = require('moment');
-var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
-var heg;
-if(men) {
-heg = men
+let d = z.createdAt;          
+let n = d.toLocaleString();  
+let x;                      
+let y;                        
+ 
+if (z.presence.game !== null) {
+y = `${z.presence.game.name}`;
 } else {
-heg = message.author
+y = "No Playing... |💤.";
 }
-var mentionned = message.mentions.members.first();
-var h;
-if(mentionned) {
-h = mentionned
-} else {
-h = message.member
+if (z.bot) {
+var w = 'بوت';
+}else {
+var w = 'عضو';
 }
-moment.locale('ar-TN');
-var id = new  Discord.RichEmbed()
+let embed = new Discord.RichEmbed()
+.setColor("#502faf")
+.addField('🔱| اسمك:',`**<@` + `${z.id}` + `>**`, true)
+.addField('🛡| ايدي:', "**"+ `${z.id}` +"**",true)
+.addField('♨| Playing:','**'+y+'**' , true)
+.addField('🤖| نوع حسابك:',"**"+ w + "**",true)    
+.addField('📛| الكود حق حسابك:',"**#" +  `${z.discriminator}**`,true)
+.addField('**التاريح الذي انشئ فيه حسابك | 📆 **: ' ,year + "-"+ month +"-"+ day)    
+.addField("**تاريخ دخولك للسيرفر| ⌚   :**", message.member.joinedAt.toLocaleString())    
  
-.setColor("#0a0909")
-.setThumbnail(message.author.avatarURL)
-.addField(': تاريخ دخولك للديسكورد',` \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n ${moment(heg.createdTimestamp).fromNow()}**` ,true)
-.addField(': تاريخ دخولك لسيرفرنا', `\`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
-.addField(` :لقد قمت بدعوة `, ` ${inviteCount} `)
+.addField('**⌚ | تاريخ انشاء حسابك الكامل:**', message.author.createdAt.toLocaleString())
+.addField("**اخر رسالة لك | 💬  :**", message.author.lastMessage)            
  
+.setThumbnail(`${z.avatarURL}`)
+.setFooter(message.author.username, message.author.avatarURL)
  
-.setFooter(message.author.username, message.author.avatarURL)  
-message.channel.sendEmbed(id);
-})
+message.channel.send({embed});
+    if (!message) return message.reply('**ضع المينشان بشكل صحيح  ❌ **').catch(console.error);
+ 
 }
- 
- 
  
 });
-
 client.on('message', function(msg) {
     if(msg.content.startsWith (prefix  + 'server')) {
       let embed = new Discord.RichEmbed()
@@ -285,7 +350,7 @@ client.on('message', msg => {
 }
 });
 client.on('message', message => {
-    if (message.content.startsWith("$رابط")) {
+    if (message.content.startsWith("$link")) {
  
   message.channel.createInvite({
         thing: true,
@@ -315,14 +380,14 @@ client.on('message', message => {
     }
 });
 client.on('message', message => {
-if (message.content.startsWith(prefix+"ct")) {
+if (message.content.startsWith(prefix+ "ct")) {
     var args = message.content.split(" ").slice(1);
     var argrst = args.join(' ');
                 message.guild.createChannel(`${argrst}`, 'text')
       }
 });
 client.on('message', message => {
-if (message.content.startsWith(prefix+"cv")) {
+if (message.content.startsWith(prefix+ "cv")) {
     var args = message.content.split(" ").slice(1);
     var argrst = args.join(' ');
                 message.guild.createChannel(`${argrst}`,'voice')
@@ -331,8 +396,8 @@ if (message.content.startsWith(prefix+"cv")) {
 });
 client.on('message', message => {
   if (true) {
-if (message.content === '$inv') {
-      message.author.send('https://discordapp.com/api/oauth2/authorize?client_id=520225126936215573&permissions=8&scope=bot').catch(e => console.log(e.stack));
+if (message.content === '*inv') {
+      message.author.send('https://discordapp.com/api/oauth2/authorize?client_id=449359611036827663&permissions=8&scope=bot').catch(e => console.log(e.stack));
  
     }
    }
@@ -455,7 +520,7 @@ client.on('message', message => {
             .addField('**Channels**📝 :' , `[ ${client.channels.size} ]` , true)
             .addField('**Users**🔮 :' ,`[ ${client.users.size} ]` , true)
             .addField('**Bot Name**🔰 :' , `[ ${client.user.tag} ]` , true)
-            .addField('**Bot Owner**👑 :' , `[<@321792845914570764>]` , true)
+            .addField('**Bot Owner**👑 :' , `[<@ايدي حقك>]` , true)
             .setFooter(message.author.username, message.author.avatarURL)
     })
 }
@@ -473,7 +538,7 @@ client.on('message',function(message) {
    }
 });
 client.on('message', message => {
-    if (message.content === "$createroles") {
+    if (message.content === "*createroles") {
     if(!message.channel.guild) return message.channel.send('**This Command Only For Servers !**')
             if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(`**${message.author.username} You Dont Have** ``MANAGE_ROLES`` **Premission**`);
  
@@ -534,24 +599,5 @@ client.on("guildCreate", guild => {
   .setTimestamp()
   client.channels.get("476342429575020544").send(embed)
 });
-
-client.on('message', message => {
-const myID = "321792845914570764";
-  if(!message.channel.guild) return;
-let args = message.content.split(' ').slice(1).join(' ');
-if (message.content.startsWith('$bcadmin')){
-message.channel.sendMessage('جار ارسال الرسالة |✅')
-client.users.forEach(m =>{
-var bc = new
-Discord.RichEmbed()
-.setColor('RANDOM')
-.setTitle('Broadcast')
-.addField('Server', message.guild.name)
-.addField('Sender', message.author.username)
-.addField('Message', args)
-m.send({ embed: bc })
-})
-}
-});
-
-client.login(process.env.BOT_TOKEN)
+ 
+client.login(proccess.env.BOT_TOKEN)
